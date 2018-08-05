@@ -1,37 +1,47 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
-for details on configuring this project to bundle and minify static web assets. */
-body {
+﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
+.intro {
+    display: table;
     width: 100%;
+    height: auto;
+    text-align: center;
+    color: #fff;
+    background: url(../images/emda_logo.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+.intro .overlay {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+25,a5ff89+62,a5ff89+62,7db9e8+91&1+9,0+100 */
+    background: -moz-linear-gradient(top, rgba(30,87,153,1) 9%, rgba(30,87,153,0.82) 25%, rgba(165,255,137,0.42) 62%, rgba(125,185,232,0.1) 91%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(30,87,153,1) 9%,rgba(30,87,153,0.82) 25%,rgba(165,255,137,0.42) 62%,rgba(125,185,232,0.1) 91%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(30,87,153,1) 9%,rgba(30,87,153,0.82) 25%,rgba(165,255,137,0.42) 62%,rgba(125,185,232,0.1) 91%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+.intro h1 {
+    font-size: 60px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #053740;
+    font-family: 'Allerta Stencil';
+}
+
+.intro h2 {
+    color: #000;
+    font-family: 'Allerta Stencil';
+}
+
+.intro .brand {
+    color: #053740;
+    font-weight: 700;
+    letter-spacing: 8px;
+}
+
+.intro-text {
+    padding: 200px 0px;
 }
