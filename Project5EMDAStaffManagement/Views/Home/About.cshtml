@@ -1,7 +1,52 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Sign In / Out</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <h3>Sign In</h3>
+        </div>
+        <div class="col-xs-6">
+            <h3>Sign Out</h3>
+        </div>
+        <div class="col-md-2">
+            <select style="width: 100%" >
+                <option disabled="disabled" selected="selected">Staff Member</option>
+                <option>Staff 1</option>
+                <option>Staff 2</option>
+                <option>Staff 3</option>
+                <option>Staff 4</option>
+            </select>
+        </div>
+        <div class="col-md-2">
 
-<p>Use this area to provide additional information.</p>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" class="btn btn-success" value="Sign In" style="width: 100%" />
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+            <select style="width: 100%" >
+                <option disabled="disabled" selected="selected">Staff Member</option>
+                <option>Staff 1</option>
+                <option>Staff 2</option>
+                <option>Staff 3</option>
+                <option>Staff 4</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select style="width: 100%" >
+                <option disabled="disabled" selected="selected">Reason for leaving</option>
+                <option>End of day</option>
+                <option>Meeting</option>
+                <option>Going to client site</option>
+                <option>Sick</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" class="btn btn-success" value="Sign Out" style="width: 100%" />
+        </div>
+    </div>
+</div>

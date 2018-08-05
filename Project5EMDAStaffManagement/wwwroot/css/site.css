@@ -45,3 +45,7 @@
 .intro-text {
     padding: 200px 0px;
 }
+
+select {
+    padding: 8px;
+}
