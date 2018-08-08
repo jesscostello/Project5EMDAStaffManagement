@@ -1,6 +1,9 @@
-﻿@{
+﻿@model Project5EMDAStaffManagement.Models.Staff
+
+@{
     ViewData["Title"] = "About";
 }
+
 <div class="container">
     <h2>
         Sign In / Out
@@ -8,12 +11,8 @@
     <br />
     <div class="row">
         <div class="col-md-4">
-            <select style="width: 100%">
-                <option disabled="disabled" selected="selected">Staff Member</option>
-                <option>Staff 1</option>
-                <option>Staff 2</option>
-                <option>Staff 3</option>
-                <option>Staff 4</option>
+            <select asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
+                <option value="">Select Staff</option>
             </select>
         </div>
         <div class="col-md-2 text-center">

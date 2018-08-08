@@ -54,7 +54,8 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,TimeIn,TimeOut")] Staff staff)
+        //public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,TimeIn,TimeOut")] Staff staff)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Staff staff)
         {
             if (ModelState.IsValid)
             {
