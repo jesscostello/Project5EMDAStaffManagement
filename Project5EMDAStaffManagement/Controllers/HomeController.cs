@@ -28,7 +28,7 @@ namespace Project5EMDAStaffManagement.Controllers
                         Value = n.Id.ToString(),
                         Text = n.FirstName + " " + n.LastName
                     }).ToList();
-
+            
             return View();
         }
 

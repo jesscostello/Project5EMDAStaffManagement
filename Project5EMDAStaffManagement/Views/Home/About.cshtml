@@ -10,21 +10,29 @@
     </h2>
     <br />
     <div class="row">
-        <div class="col-md-4">
-            <select asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
-                <option value="">Select Staff</option>
-            </select>
-        </div>
-        <div class="col-md-2 text-center">
-            Out
-            <label class="switch">
-                <input type="checkbox" >
-                <span class="slider round"></span>
-            </label>
-            In
-        </div>
-        <div class="col-md-2">
-            <input type="submit" class="btn btn-success" style="width: 100%" disabled />
-        </div>
+        <form >
+            <div class="col-md-4">
+                <label asp-for="FirstName">Staff Member </label>
+                <select name="staffname" asp-for="Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
+                    <option value="">Select Staff</option>
+                </select>
+            </div>
+            <div class="col-md-2 text-center">
+                Out
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                In
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-success" style="width: 100%" />
+            </div>
+        </form>
     </div>
+    @foreach(var SelectListItem in (List<SelectListItem>)ViewData["Staff"])
+    {
+        <h3>hello @SelectListItem.Text @SelectListItem.Value</h3>
+    }
+    <h3>@ViewData["Test"]</h3>
 </div>
