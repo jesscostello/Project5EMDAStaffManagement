@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Project5EMDAStaffManagement.Data;
 using Project5EMDAStaffManagement.Models;
+using System.Web.Services;
 
 namespace Project5EMDAStaffManagement.Controllers
 {
@@ -48,29 +49,19 @@ namespace Project5EMDAStaffManagement.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Submit(FormCollection formcollection)
-        //{
-        //    TempData["Message"] = "Fruit Name: " + formcollection["Text"];
-        //    TempData["Message"] += "\\nFruit Id: " + formcollection["Value"]; ;
-        //    return RedirectToAction("About");
-        //}
+        
+        public static string GetCurrentTime()
+        {
+            return "Hello \nThe Current Time is: " + DateTime.Now.ToString();
+        }
 
-        //private void FillStaff(string staff="")
-        //{
-        //    SelectListItem selectedItem = (from i in Staff
-        //                                   where i.Value == staff
-        //                                   select i).SingleOrDefault();
-
-        //    if (selectedItem != null)
-        //    {
-        //        selectedItem.Selected = true;
-        //    }
-
-        //    ViewBag.Staff = staff;
-        //}
-
-
+        [HttpGet]
+        public IActionResult Submit(FormCollection formcollection)
+        {
+            TempData["Message"] = "Fruit Name: " + formcollection["Text"];
+            TempData["Message"] += "\\nFruit Id: " + formcollection["Value"];
+            return About();
+        }
 
         public IActionResult Contact()
         {

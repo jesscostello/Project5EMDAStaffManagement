@@ -26,6 +26,5 @@ namespace Project5EMDAStaffManagement.Data
         {
             base.OnModelCreating(builder);
         }
-        public DbSet<Project5EMDAStaffManagement.Models.FruitModel> FruitModel { get; set; }
     }
 }
