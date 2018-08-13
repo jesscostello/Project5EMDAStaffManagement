@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Project5EMDAStaffManagement.Data;
@@ -46,6 +47,30 @@ namespace Project5EMDAStaffManagement.Controllers
 
             return View();
         }
+
+        //[HttpPost]
+        //public ActionResult Submit(FormCollection formcollection)
+        //{
+        //    TempData["Message"] = "Fruit Name: " + formcollection["Text"];
+        //    TempData["Message"] += "\\nFruit Id: " + formcollection["Value"]; ;
+        //    return RedirectToAction("About");
+        //}
+
+        //private void FillStaff(string staff="")
+        //{
+        //    SelectListItem selectedItem = (from i in Staff
+        //                                   where i.Value == staff
+        //                                   select i).SingleOrDefault();
+
+        //    if (selectedItem != null)
+        //    {
+        //        selectedItem.Selected = true;
+        //    }
+
+        //    ViewBag.Staff = staff;
+        //}
+
+
 
         public IActionResult Contact()
         {

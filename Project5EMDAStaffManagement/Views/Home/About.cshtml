@@ -10,13 +10,29 @@
     </h2>
     <br />
     <div class="row">
-        <form >
+        <form>
             <div class="col-md-4">
                 <label asp-for="FirstName">Staff Member </label>
-                <select name="staffname" asp-for="Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
+                <select name="staffname" asp-for="Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%" onchange="SetSelectedId(this.value)" >
                     <option value="">Select Staff</option>
                 </select>
+                <span id="span1"></span>
             </div>
+            <script>
+                function SetSelectedId(val) {
+                    @foreach (Staff staff in (IEnumerable<Staff>)ViewData["Staff"])
+                    {
+                        int val = 3;
+                        if (staff.Id == val)
+                        {
+
+                        }
+                    }
+
+                    alert(val);
+                }
+            </script>
+
             <div class="col-md-2 text-center">
                 Out
                 <label class="switch">
@@ -30,7 +46,7 @@
             </div>
         </form>
     </div>
-    @foreach(var SelectListItem in (List<SelectListItem>)ViewData["Staff"])
+    @foreach (var SelectListItem in (List<SelectListItem>)ViewData["Staff"])
     {
         <h3>hello @SelectListItem.Text @SelectListItem.Value</h3>
     }

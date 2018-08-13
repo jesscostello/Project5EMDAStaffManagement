@@ -13,6 +13,7 @@ namespace Project5EMDAStaffManagement.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime TimeIn { get; set; }
-        public DateTime TimeOut { get; set; }  
+        public DateTime TimeOut { get; set; }
+        public bool In { get; set; }
     }
 }
