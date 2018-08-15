@@ -1,7 +1,7 @@
 ﻿@model Project5EMDAStaffManagement.Models.Staff
 
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "Sign In / Out";
 }
 
 <div class="container">
@@ -13,35 +13,11 @@
         <form name="staffform" method="get">
             <div class="col-md-4 col-xs-6">
                 <label asp-for="FirstName">Staff Member </label>
-                <select id="ddlStaff" name="staffname" asp-for="Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%" onchange="ShowCurrentTime()">
+                <select id="StaffSelect" asp-for="Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
                     <option value="">Select Staff</option>
                 </select>
             </div>
             <span id="span1"></span>
-            <script>
-                function SetSelectedId(val) {
-                    $("#span1").text(val)
-
-                }
-            </script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-            <script type = "text/javascript">
-                function ShowCurrentTime() {
-                    $.ajax({
-                        type: "POST",
-                        url: "HomeController.cs/GetCurrentTime",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: OnSuccess,
-                        failure: function(response) {
-                            alert(response.d);
-                        }
-                    });
-                }
-                function OnSuccess(response) {
-                    alert(response.d);
-                }
-            </script>
             <div class="col-md-2 col-xs-2 text-center">
                 Out
                 <label class="switch">

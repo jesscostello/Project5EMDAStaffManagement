@@ -13,3 +13,33 @@
 </div>
 
 @await Html.PartialAsync("~/Views/Home/About.cshtml")
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $("#StaffSelect").change(function () {
+            //get the id of the returned entry
+
+            var ReturnID = $("#StaffSelect  option:selected").val();
+            alert(ReturnID);
+
+            var ID = ReturnID.split(" ");
+            alert(ID[1]);
+            //send up the returned ID find the Staff ID for that entry
+
+            //get the name of the returned person selected
+            var name = $("#StaffSelect  option:selected").text();
+
+            if (name != null) {
+                // name as 'text' in the select box
+                alert(name);
+                //split the name up to an array
+                var text = name.split(" ");
+                // first name
+                alert(text[0]);
+                // last name
+                alert(text[1]);
+            }
+        });
+    </script>
+}
