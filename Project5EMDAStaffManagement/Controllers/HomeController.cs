@@ -33,13 +33,12 @@ namespace Project5EMDAStaffManagement.Controllers
 
             ViewData["StaffIn"] = _context.Staff.Distinct()
                 .OrderBy(n => n.Id)
-                .Select(n => new
+                .Select(n => new SelectListItem()
                 {
-                    Id = n.Id.ToString(),
-                    In = n.In.ToString()
+                    Value = n.Id.ToString(),
+                    Text = n.In.ToString()
                 }).ToList();
-                
-            
+
             return View();
         }
 

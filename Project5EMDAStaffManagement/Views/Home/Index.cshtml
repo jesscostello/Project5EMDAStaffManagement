@@ -15,7 +15,7 @@
 
 @await Html.PartialAsync("~/Views/Home/About.cshtml")
 
-@foreach (SelectListItem staff in (IEnumerable<SelectListItem>)ViewData["StaffIn"])
+@*@foreach (SelectListItem staff in (IEnumerable<SelectListItem>)ViewData["StaffIn"])
 {
     if (staff.Text == "True")
     {
@@ -25,19 +25,17 @@
     {
         <h3>false</h3>
     }
-}
+}*@
 
 @section Scripts {
-        <script type="text/javascript">
-
+<script type="text/javascript">
         $("#StaffSelect").change(function () {
             //get the id of the returned entry
-
             var ReturnID = $("#StaffSelect  option:selected").val();
-            alert(ReturnID);
+            //alert(ReturnID);
 
             var ID = ReturnID.split(" ");
-            alert(ID[1]);
+            //alert(ID[1]);
             //send up the returned ID find the Staff ID for that entry
 
             //get the name of the returned person selected
@@ -45,34 +43,29 @@
 
             if (name != null) {
                 // name as 'text' in the select box
-                alert(name);
+                //alert(name);
                 //split the name up to an array
                 var text = name.split(" ");
                 // first name
-                alert(text[0]);
+                //alert(text[0]);
                 // last name
-                alert(text[1]);
+                //alert(text[1]);
             }
 
-            @foreach (var staff in (IEnumerable) ViewData["StaffIn"])
+            @foreach (SelectListItem staff in (IEnumerable) ViewData["StaffIn"])
             {
-                if ()
+                if (staff.Value == "4")
                 {
                     if(ViewData["StaffIn"].ToString() == "True")
                     {
-                        <text>$("#InToggle").checked = true;</text>
+                        <text>$("#InToggle").bootstrapToggle("on");</text>
                     }
                     if(ViewData["StaffIn"].ToString() != "True")
                     {
-                        <text>$("#InToggle").checked = false;</text>
+                        <text>$("#InToggle").bootstrapToggle("off");</text>
                     }
                 }
             }
-
-
-
-
-
         });
-        </script>
+</script>
 }

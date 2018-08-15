@@ -19,21 +19,13 @@
             </div>
             <span id="span1"></span>
             <div class="col-md-2 col-xs-2 text-center">
-                Out
-                <label class="switch">
-                    <input id="InToggle" name="inout" type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-                In
+                <label asp-for="In">In / Out </label><br />
+                <input id="InToggle" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" />
             </div>
             <div class="col-md-2 col-xs-4">
-                <input type="submit" class="btn btn-success" style="width: 100%" />
+                <label> </label><br />
+                <input type="submit" class="btn btn-success" style="width: 100%"/>
             </div>
         </form>
     </div>
-    @foreach (var SelectListItem in (List<SelectListItem>)ViewData["Staff"])
-    {
-        <h3>@SelectListItem.Text @SelectListItem.Value</h3>
-    }
-    <h3>@ViewData["Test"]</h3>
 </div>
