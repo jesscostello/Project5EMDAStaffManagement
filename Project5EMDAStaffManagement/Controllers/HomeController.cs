@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -29,6 +30,15 @@ namespace Project5EMDAStaffManagement.Controllers
                         Value = n.Id.ToString(),
                         Text = n.FirstName + " " + n.LastName
                     }).ToList();
+
+            ViewData["StaffIn"] = _context.Staff.Distinct()
+                .OrderBy(n => n.Id)
+                .Select(n => new
+                {
+                    Id = n.Id.ToString(),
+                    In = n.In.ToString()
+                }).ToList();
+                
             
             return View();
         }
@@ -37,13 +47,13 @@ namespace Project5EMDAStaffManagement.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            ViewData["Staff"] = _context.Staff.Distinct()
-                    .OrderBy(n => n.FirstName)
-                    .Select(n => new SelectListItem
-                    {
-                        Value = n.Id.ToString(),
-                        Text = n.FirstName + " " + n.LastName
-                    }).ToList();
+            //ViewData["Staff"] = _context.Staff.Distinct()
+            //        .OrderBy(n => n.FirstName)
+            //        .Select(n => new SelectListItem
+            //        {
+            //            Value = n.Id.ToString(),
+            //            Text = n.FirstName + " " + n.LastName
+            //        }).ToList();
 
             return View();
         }

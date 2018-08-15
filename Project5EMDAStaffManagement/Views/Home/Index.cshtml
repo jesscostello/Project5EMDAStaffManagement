@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Collections
+@{
     ViewData["Title"] = "Home Page";
 }
 <div class="intro">
@@ -14,8 +15,20 @@
 
 @await Html.PartialAsync("~/Views/Home/About.cshtml")
 
+@foreach (SelectListItem staff in (IEnumerable<SelectListItem>)ViewData["StaffIn"])
+{
+    if (staff.Text == "True")
+    {
+        <h3>true</h3>
+    }
+    else if (staff.Text == "False")
+    {
+        <h3>false</h3>
+    }
+}
+
 @section Scripts {
-    <script type="text/javascript">
+        <script type="text/javascript">
 
         $("#StaffSelect").change(function () {
             //get the id of the returned entry
@@ -40,6 +53,26 @@
                 // last name
                 alert(text[1]);
             }
+
+            @foreach (var staff in (IEnumerable) ViewData["StaffIn"])
+            {
+                if ()
+                {
+                    if(ViewData["StaffIn"].ToString() == "True")
+                    {
+                        <text>$("#InToggle").checked = true;</text>
+                    }
+                    if(ViewData["StaffIn"].ToString() != "True")
+                    {
+                        <text>$("#InToggle").checked = false;</text>
+                    }
+                }
+            }
+
+
+
+
+
         });
-    </script>
+        </script>
 }
