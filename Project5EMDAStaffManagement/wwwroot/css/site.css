@@ -2,6 +2,13 @@
     padding-top: 50px;
 }
 
+.toggle.ios, .toggle-on.ios, .toggle-off.ios {
+    border-radius: 20px !important;
+}
+.toggle.ios .toggle-handle {
+    border-radius: 20px !important;
+}
+
 h1, h2, h3, h4 {
     font-family: 'Allerta Stencil';
 }
@@ -55,18 +62,18 @@ select {
 }
 
 /* The switch - the box around the slider */
-.switch {
+/*.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-}
+}*/
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+/*.switch input {display:none;}*/
 
 /* The slider */
-.slider {
+/*.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -102,13 +109,13 @@ input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-}
+}*/
 
 /* Rounded sliders */
-.slider.round {
+/*.slider.round {
     border-radius: 34px;
 }
 
 .slider.round:before {
     border-radius: 50%;
-}
+}*/

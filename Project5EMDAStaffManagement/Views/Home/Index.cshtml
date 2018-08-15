@@ -34,37 +34,23 @@
             var ReturnID = $("#StaffSelect  option:selected").val();
             //alert(ReturnID);
 
-            var ID = ReturnID.split(" ");
+            //var ID = ReturnID.split(" ");
             //alert(ID[1]);
             //send up the returned ID find the Staff ID for that entry
 
-            //get the name of the returned person selected
-            var name = $("#StaffSelect  option:selected").text();
-
-            if (name != null) {
-                // name as 'text' in the select box
-                //alert(name);
-                //split the name up to an array
-                var text = name.split(" ");
-                // first name
-                //alert(text[0]);
-                // last name
-                //alert(text[1]);
-            }
-
             @foreach (SelectListItem staff in (IEnumerable) ViewData["StaffIn"])
             {
-                if (staff.Value == "4")
-                {
-                    if(ViewData["StaffIn"].ToString() == "True")
+                //if (staff.Value == ReturnID)
+                //{
+                    if(staff.Text == "True")
                     {
                         <text>$("#InToggle").bootstrapToggle("on");</text>
                     }
-                    if(ViewData["StaffIn"].ToString() != "True")
+                    if(staff.Text != "True")
                     {
                         <text>$("#InToggle").bootstrapToggle("off");</text>
                     }
-                }
+                //}
             }
         });
 </script>
