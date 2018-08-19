@@ -54,9 +54,12 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,TimeIn,TimeOut")] Staff staff)
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Staff staff)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,In,TimeIn")] Staff staff)
         {
+            staff.In = true;
+            staff.TimeIn = DateTime.Now;
+            staff.TimeOut = DateTime.Today;
+            
             if (ModelState.IsValid)
             {
                 _context.Add(staff);
@@ -87,7 +90,7 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,TimeIn,TimeOut")] Staff staff)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In,TimeIn,TimeOut")] Staff staff)
         {
             if (id != staff.Id)
             {

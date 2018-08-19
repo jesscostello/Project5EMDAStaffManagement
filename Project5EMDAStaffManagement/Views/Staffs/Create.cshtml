@@ -3,44 +3,33 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="container">
+    <div class="jumbotron">
+        <h2>Create Staff Member</h2> 
+        <div>
+            ( <a asp-action="Index"><span class="glyphicon glyphicon-hand-left"></span> Back to List</a> )
+        </div>
+    </div>
 
-<h2>Create</h2>
-
-<h4>Staff</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="row">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+            <div class="form-group col-sm-5">
+                <label asp-for="FirstName" class="control-label">First Name</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+            <div class="form-group col-sm-5">
+                <label asp-for="LastName" class="control-label">Last Name</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="TimeIn" class="control-label"></label>
-                <input asp-for="TimeIn" class="form-control" />
-                <span asp-validation-for="TimeIn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TimeOut" class="control-label"></label>
-                <input asp-for="TimeOut" class="form-control" />
-                <span asp-validation-for="TimeOut" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group col-sm-2">
+                <label class="control-label"></label><br/>
+                <input type="submit" value="Create" class="btn btn-success" style="width: 100%" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
