@@ -13,6 +13,10 @@ h1, h2, h3, h4 {
     font-family: 'Allerta Stencil';
 }
 
+.jumbotron {
+    margin-top: 20px;
+}
+
 .intro {
     display: table;
     width: 100%;

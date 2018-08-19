@@ -57,20 +57,6 @@ namespace Project5EMDAStaffManagement.Controllers
             return View();
         }
 
-        
-        public static string GetCurrentTime()
-        {
-            return "Hello \nThe Current Time is: " + DateTime.Now.ToString();
-        }
-
-        [HttpGet]
-        public IActionResult Submit(FormCollection formcollection)
-        {
-            TempData["Message"] = "Fruit Name: " + formcollection["Text"];
-            TempData["Message"] += "\\nFruit Id: " + formcollection["Value"];
-            return About();
-        }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
