@@ -39,6 +39,14 @@ namespace Project5EMDAStaffManagement.Controllers
                     Text = n.In.ToString()
                 }).ToList();
 
+            ViewData["Reasons"] = _context.Reasons.Distinct()
+                .OrderByDescending(n => n.ReasonCount)
+                .Select(n => new SelectListItem()
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Reason
+                }).ToList();
+
             return View();
         }
 

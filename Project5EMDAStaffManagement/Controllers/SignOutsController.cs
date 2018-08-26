@@ -46,6 +46,30 @@ namespace Project5EMDAStaffManagement.Controllers
         // GET: SignOuts/Create
         public IActionResult Create()
         {
+            ViewData["Staff"] = _context.Staff.Distinct()
+                .OrderBy(n => n.FirstName)
+                .Select(n => new SelectListItem
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.FirstName + " " + n.LastName
+                }).ToList();
+
+            ViewData["StaffIn"] = _context.Staff.Distinct()
+                .OrderBy(n => n.Id)
+                .Select(n => new SelectListItem()
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.In.ToString()
+                }).ToList();
+
+            ViewData["Reasons"] = _context.Reasons.Distinct()
+                .OrderByDescending(n => n.ReasonCount)
+                .Select(n => new SelectListItem()
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Reason
+                }).ToList();
+
             return View();
         }
 

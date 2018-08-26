@@ -32,8 +32,8 @@
         $("#StaffSelect").change(function () {
             //get the id of the returned entry
             var ReturnID = $("#StaffSelect  option:selected").val();
-            //alert(ReturnID);
-            $("#hiddenInfo").val(ReturnID);
+            alert(ReturnID);
+            //$("#hiddenInfo").val(ReturnID);
             
             //var hiddenID = $("#hiddenInfo").val();
             //alert(hiddenID)
@@ -44,16 +44,17 @@
             @foreach (SelectListItem staff in (IEnumerable) ViewData["StaffIn"])
             {
                 int staffID = Convert.ToInt32(staff.Value);
-                @*<text>$("#hiddenInfo").val(staffID);</text>*@
-                
-                if (staffID == 3)
+
+                if (staffID == ReturnID)
                 {
-                    if (staff.Text == "True") {
+                    if (staff.Text == "True")
+                    {
                         <text>$("#InToggle").bootstrapToggle("on");</text>
-                    }
-                    if (staff.Text != "True") {
+                        }
+                    else
+                    {
                         <text>$("#InToggle").bootstrapToggle("off");</text>
-                    }
+                        }
                 }
             }
         });

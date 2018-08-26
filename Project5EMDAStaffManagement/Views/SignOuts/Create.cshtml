@@ -13,19 +13,15 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Day" class="control-label"></label>
-                <input asp-for="Day" class="form-control" />
-                <span asp-validation-for="Day" class="text-danger"></span>
+                <label asp-for="StaffName">Staff Member </label>
+                <select id="StaffSelect" asp-for="StaffName" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
+                    <option value="">Select Staff</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="TimeOut" class="control-label"></label>
-                <input asp-for="TimeOut" class="form-control" />
-                <span asp-validation-for="TimeOut" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HoursIn" class="control-label"></label>
-                <input asp-for="HoursIn" class="form-control" />
-                <span asp-validation-for="HoursIn" class="text-danger"></span>
+                <select asp-for="Reason" asp-items="@((List<SelectListItem>) ViewData["Reasons"])" class="form-control" style="width: 100%">
+                    <option value="">Select Reason</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
