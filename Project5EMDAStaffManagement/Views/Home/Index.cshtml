@@ -15,48 +15,41 @@
 
 @await Html.PartialAsync("~/Views/Home/About.cshtml")
 
-@*@foreach (SelectListItem staff in (IEnumerable<SelectListItem>)ViewData["StaffIn"])
-{
-    if (staff.Text == "True")
-    {
-        <h3>true</h3>
-    }
-    else if (staff.Text == "False")
-    {
-        <h3>false</h3>
-    }
-}*@
-
 @section Scripts {
 <script type="text/javascript">
         $("#StaffSelect").change(function () {
             //get the id of the returned entry
             var ReturnID = $("#StaffSelect  option:selected").val();
-            alert(ReturnID);
-            //$("#hiddenInfo").val(ReturnID);
-            
-            //var hiddenID = $("#hiddenInfo").val();
-            //alert(hiddenID)
-            //var ID = ReturnID.split(" ");
-            //alert(ID[1]);
-            //send up the returned ID find the Staff ID for that entry
+
+            var counter = 0;
 
             @foreach (SelectListItem staff in (IEnumerable) ViewData["StaffIn"])
             {
                 int staffID = Convert.ToInt32(staff.Value);
-
-                if (staffID == ReturnID)
+                if (staff.Text == "True")
                 {
-                    if (staff.Text == "True")
-                    {
-                        <text>$("#InToggle").bootstrapToggle("on");</text>
-                        }
-                    else
-                    {
-                        <text>$("#InToggle").bootstrapToggle("off");</text>
-                        }
+                    <text>var test = "True";</text>
                 }
+                else {
+                    <text>var test = "False";</text>
+                }
+                <text>
+                    counter++;
+                    for (var i = 0; i < counter; i++) {
+                        if (ReturnID == @staff.Value) {
+                            if (test == "True") {
+                                $("#InToggle").bootstrapToggle("on");
+                                $("#ReasonSelect").show();
+                            }
+                            else {
+                                $("#InToggle").bootstrapToggle("off");
+                                $("#ReasonSelect").hide();
+                            }
+                        }
+                    }
+                </text>
             }
+
         });
 </script>
 }
