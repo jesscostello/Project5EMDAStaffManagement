@@ -12,11 +12,13 @@
         </div>
     </div>
 </div>
-
 @await Html.PartialAsync("~/Views/Home/About.cshtml")
 
+<br />
+
+@await Html.PartialAsync("~/Views/SignOuts/Index.cshtml")
 @section Scripts {
-<script type="text/javascript">
+    <script type="text/javascript">
         $("#StaffSelect").change(function () {
             //get the id of the returned entry
             var ReturnID = $("#StaffSelect  option:selected").val();
@@ -51,5 +53,5 @@
             }
 
         });
-</script>
+    </script>
 }

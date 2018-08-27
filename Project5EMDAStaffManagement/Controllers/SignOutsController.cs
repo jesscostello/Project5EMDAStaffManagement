@@ -22,7 +22,15 @@ namespace Project5EMDAStaffManagement.Controllers
         // GET: SignOuts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SignOuts.ToListAsync());
+            var today = DateTime.Today;
+            List<SignOuts> StaffOut = new List<SignOuts>();
+            StaffOut.AddRange(_context.SignOuts
+                .OrderBy(s => s.StaffName)
+                .Where(s => s.Day.Date == today)
+                .ToList());
+
+            ViewData["StaffOut"] = StaffOut;
+            return View();
         }
 
         // GET: SignOuts/Details/5

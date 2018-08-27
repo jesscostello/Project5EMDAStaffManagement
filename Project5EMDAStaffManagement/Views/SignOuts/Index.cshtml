@@ -1,47 +1,23 @@
-﻿@model IEnumerable<Project5EMDAStaffManagement.Models.SignOuts>
+﻿@*@model IEnumerable<Project5EMDAStaffManagement.Models.SignOuts>*@
+@using System.Collections
+@model List<SignOuts>
 
 @{
     ViewData["Title"] = "Index";
 }
+<div class="container">
+    <h2>Staff Currently Out</h2><br /><br />
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Day)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeOut)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoursIn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Day)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeOut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoursIn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @foreach (var item in ViewData["StaffOut"] as List<SignOuts>)
+    {
+        <p>
+            @Html.DisplayFor(modelItem => item.StaffName)
+            signed out at
+            @Html.DisplayFor(modelItem => item.TimeOut)
+            for the following reason:
+            @Html.DisplayFor(modelItem => item.Reason)
+            Session in office (hours) =
+            @Html.DisplayFor(modelItem => item.HoursIn)
+        </p>
+    }
+</div>

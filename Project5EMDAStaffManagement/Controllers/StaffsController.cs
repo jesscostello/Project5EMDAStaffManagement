@@ -101,6 +101,14 @@ namespace Project5EMDAStaffManagement.Controllers
             {
                 try
                 {
+                    if (staff.In == true)
+                    {
+                        staff.TimeIn = DateTime.Now;
+                    }
+                    else if (staff.In == false)
+                    {
+                        staff.TimeOut = DateTime.Now;
+                    }
                     _context.Update(staff);
                     await _context.SaveChangesAsync();
                 }

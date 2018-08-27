@@ -48,6 +48,15 @@ namespace Project5EMDAStaffManagement.Controllers
                     Text = n.Reason
                 }).ToList();
 
+            var today = DateTime.Today;
+            List<SignOuts> StaffOut = new List<SignOuts>();
+            StaffOut.AddRange(_context.SignOuts
+                .OrderBy(s => s.StaffName)
+                .Where(s => s.Day.Date == today)
+                .ToList());
+
+            ViewData["StaffOut"] = StaffOut;
+
             return View();
         }
 
