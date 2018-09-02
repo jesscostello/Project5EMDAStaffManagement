@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore.Internal;
 using Project5EMDAStaffManagement.Data;
 using Project5EMDAStaffManagement.Models;
 
@@ -51,9 +52,17 @@ namespace Project5EMDAStaffManagement.Controllers
             var today = DateTime.Today;
             List<SignOuts> StaffOut = new List<SignOuts>();
             StaffOut.AddRange(_context.SignOuts
-                .OrderBy(s => s.StaffName)
+                .OrderBy(s => s.Staff)
                 .Where(s => s.Day.Date == today)
                 .ToList());
+
+            //StaffOut.AddRange(_context.SignOuts.Join(_context.Staff, s => s.StaffName, n => n.Id, (s,n) => new {}));
+
+            //StaffOut.AddRange(_context.SignOuts.Join(_context.Staff,
+                    //SignOuts => new {Id = SignOuts.StaffNameId},
+                  //  Staff => new {Staff.Id},
+                   // (SignOuts, Staff) => new {StaffName = Staff})
+               // .ToList());
 
             ViewData["StaffOut"] = StaffOut;
 

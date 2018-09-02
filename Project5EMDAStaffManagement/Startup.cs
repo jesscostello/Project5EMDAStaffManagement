@@ -40,7 +40,7 @@ namespace Project5EMDAStaffManagement
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddDbContext<StaffDbContext>(options => options.UseSqlite("Data Source = EMDAStaff.db"));
+            services.AddDbContext<StaffDbContext>(options => options.UseSqlite("Data Source = Staff.db"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

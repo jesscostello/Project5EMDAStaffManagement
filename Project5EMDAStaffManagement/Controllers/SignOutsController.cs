@@ -25,7 +25,7 @@ namespace Project5EMDAStaffManagement.Controllers
             var today = DateTime.Today;
             List<SignOuts> StaffOut = new List<SignOuts>();
             StaffOut.AddRange(_context.SignOuts
-                .OrderBy(s => s.StaffName)
+                .OrderBy(s => s.Staff)
                 .Where(s => s.Day.Date == today)
                 .ToList());
 

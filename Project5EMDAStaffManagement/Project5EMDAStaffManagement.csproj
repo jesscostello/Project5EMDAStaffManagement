@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180827030707_dummy.cs" />
+    <Compile Remove="Migrations\20180827030707_dummy.Designer.cs" />
+    <Compile Remove="Migrations\20180827032442_dummy2.cs" />
+    <Compile Remove="Migrations\20180827032442_dummy2.Designer.cs" />
+    <Compile Remove="Migrations\20180902214255_Init.cs" />
+    <Compile Remove="Migrations\20180902214255_Init.Designer.cs" />
     <Compile Remove="Models\Call_Controller_DropDownList_Change_MVC.cs" />
   </ItemGroup>
 

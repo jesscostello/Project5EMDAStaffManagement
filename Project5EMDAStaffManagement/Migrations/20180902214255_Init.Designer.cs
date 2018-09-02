@@ -9,7 +9,7 @@ using Project5EMDAStaffManagement.Data;
 namespace Project5EMDAStaffManagement.Migrations
 {
     [DbContext(typeof(StaffDbContext))]
-    [Migration("20180806012234_Init")]
+    [Migration("20180902214255_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace Project5EMDAStaffManagement.Migrations
 
                     b.Property<int?>("ReasonId");
 
-                    b.Property<int?>("StaffNameId");
+                    b.Property<int?>("StaffId");
 
                     b.Property<DateTime>("TimeOut");
 
@@ -51,7 +51,7 @@ namespace Project5EMDAStaffManagement.Migrations
 
                     b.HasIndex("ReasonId");
 
-                    b.HasIndex("StaffNameId");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("SignOuts");
                 });
@@ -62,6 +62,8 @@ namespace Project5EMDAStaffManagement.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("FirstName");
+
+                    b.Property<bool>("In");
 
                     b.Property<string>("LastName");
 
@@ -80,9 +82,9 @@ namespace Project5EMDAStaffManagement.Migrations
                         .WithMany()
                         .HasForeignKey("ReasonId");
 
-                    b.HasOne("Project5EMDAStaffManagement.Models.Staff", "StaffName")
+                    b.HasOne("Project5EMDAStaffManagement.Models.Staff", "StaffId")
                         .WithMany()
-                        .HasForeignKey("StaffNameId");
+                        .HasForeignKey("StaffId");
                 });
 #pragma warning restore 612, 618
         }

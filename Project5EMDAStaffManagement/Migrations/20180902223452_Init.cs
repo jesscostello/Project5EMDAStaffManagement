@@ -30,7 +30,8 @@ namespace Project5EMDAStaffManagement.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     TimeIn = table.Column<DateTime>(nullable: false),
-                    TimeOut = table.Column<DateTime>(nullable: false)
+                    TimeOut = table.Column<DateTime>(nullable: false),
+                    In = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +44,7 @@ namespace Project5EMDAStaffManagement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    StaffNameId = table.Column<int>(nullable: true),
+                    StaffId = table.Column<int>(nullable: true),
                     Day = table.Column<DateTime>(nullable: false),
                     TimeOut = table.Column<DateTime>(nullable: false),
                     ReasonId = table.Column<int>(nullable: true),
@@ -59,8 +60,8 @@ namespace Project5EMDAStaffManagement.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_SignOuts_Staff_StaffNameId",
-                        column: x => x.StaffNameId,
+                        name: "FK_SignOuts_Staff_StaffId",
+                        column: x => x.StaffId,
                         principalTable: "Staff",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -72,9 +73,9 @@ namespace Project5EMDAStaffManagement.Migrations
                 column: "ReasonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SignOuts_StaffNameId",
+                name: "IX_SignOuts_StaffId",
                 table: "SignOuts",
-                column: "StaffNameId");
+                column: "StaffId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

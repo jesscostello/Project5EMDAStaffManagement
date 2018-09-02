@@ -9,7 +9,7 @@ namespace Project5EMDAStaffManagement.Models
     public class SignOuts
     {
         [Key] public int Id { get; set; }
-        public Staff StaffName { get; set; }
+        public Staff Staff { get; set; }
         public DateTime Day { get; set; }
         public DateTime TimeOut { get; set; }
         public Reasons Reason { get; set; }
