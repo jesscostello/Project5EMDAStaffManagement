@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Project5EMDAStaffManagement.Data;
 using Project5EMDAStaffManagement.Models;
@@ -52,17 +53,11 @@ namespace Project5EMDAStaffManagement.Controllers
             var today = DateTime.Today;
             List<SignOuts> StaffOut = new List<SignOuts>();
             StaffOut.AddRange(_context.SignOuts
+                .Include(s => s.Staff)
+                .Include(r => r.Reason)
                 .OrderBy(s => s.Staff)
                 .Where(s => s.Day.Date == today)
                 .ToList());
-
-            //StaffOut.AddRange(_context.SignOuts.Join(_context.Staff, s => s.StaffName, n => n.Id, (s,n) => new {}));
-
-            //StaffOut.AddRange(_context.SignOuts.Join(_context.Staff,
-                    //SignOuts => new {Id = SignOuts.StaffNameId},
-                  //  Staff => new {Staff.Id},
-                   // (SignOuts, Staff) => new {StaffName = Staff})
-               // .ToList());
 
             ViewData["StaffOut"] = StaffOut;
 
@@ -72,14 +67,6 @@ namespace Project5EMDAStaffManagement.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
-            //ViewData["Staff"] = _context.Staff.Distinct()
-            //        .OrderBy(n => n.FirstName)
-            //        .Select(n => new SelectListItem
-            //        {
-            //            Value = n.Id.ToString(),
-            //            Text = n.FirstName + " " + n.LastName
-            //        }).ToList();
 
             return View();
         }
