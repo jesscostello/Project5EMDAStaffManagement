@@ -11,13 +11,12 @@
     @foreach (var item in ViewData["StaffOut"] as List<SignOuts>)
     {
         <p>
-            @Html.DisplayFor(modelItem => item.Staff.FirstName) @Html.DisplayFor(modelItem => item.Staff.LastName) 
-            
+            <b>@Html.DisplayFor(modelItem => item.Staff.FirstName) @Html.DisplayFor(modelItem => item.Staff.LastName) </b>
             signed out at
             @Html.DisplayFor(modelItem => item.TimeOut)
-            for the following reason:
+            <br />Reason:
             @Html.DisplayFor(modelItem => item.Reason.Reason)
-            Session in office (hours) =
+            <br />Hours in office:
             @Html.DisplayFor(modelItem => item.HoursIn)
         </p>
     }

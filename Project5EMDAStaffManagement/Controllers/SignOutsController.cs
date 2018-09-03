@@ -25,6 +25,8 @@ namespace Project5EMDAStaffManagement.Controllers
             var today = DateTime.Today;
             List<SignOuts> StaffOut = new List<SignOuts>();
             StaffOut.AddRange(_context.SignOuts
+                .Include(s => s.Staff)
+                .Include(r => r.Reason)
                 .OrderBy(s => s.Staff)
                 .Where(s => s.Day.Date == today)
                 .ToList());
@@ -86,11 +88,15 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Day,TimeOut,HoursIn")] SignOuts signOuts)
+        public async Task<IActionResult> Create([Bind("Id,Day,TimeOut,HoursIn,In,Reason,Staff")] SignOuts signOuts)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(signOuts);
+                //_context.Add(signOuts);
+
+                
+
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
