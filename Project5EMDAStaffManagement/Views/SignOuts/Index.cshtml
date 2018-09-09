@@ -13,7 +13,7 @@
         <p>
             <b>@Html.DisplayFor(modelItem => item.Staff.FirstName) @Html.DisplayFor(modelItem => item.Staff.LastName) </b>
             signed out at
-            @Html.DisplayFor(modelItem => item.TimeOut)
+            @item.TimeOut.ToShortTimeString()
             <br />Reason:
             @Html.DisplayFor(modelItem => item.Reason.Reason)
             <br />Hours in office:

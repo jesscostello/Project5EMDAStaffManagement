@@ -23,16 +23,6 @@ namespace Project5EMDAStaffManagement.Controllers
         // GET: SignOuts
         public async Task<IActionResult> Index()
         {
-            var today = DateTime.Today;
-            List<SignOuts> StaffOut = new List<SignOuts>();
-            StaffOut.AddRange(_context.SignOuts
-                .Include(s => s.Staff)
-                .Include(r => r.Reason)
-                .OrderBy(s => s.Staff)
-                .Where(s => s.Day.Date == today)
-                .ToList());
-
-            ViewData["StaffOut"] = StaffOut;
             return View();
         }
 
@@ -114,13 +104,22 @@ namespace Project5EMDAStaffManagement.Controllers
                 {
                     createSignOutVM.TimeOut = DateTime.Now;
                     createSignOutVM.Day = DateTime.Now;
+                    // get the staff and reason IDs
+                    int StaffId = Convert.ToInt32(createSignOutVM.Staff);
+                    int ReasonId = Convert.ToInt32(createSignOutVM.Reason);
+                    Staff staff = (Staff)_context.Staff
+                        .Where(s => s.Id == StaffId).SingleOrDefault();
+                        
 
                     SignOuts signOuts = new SignOuts();
                     signOuts.Day = createSignOutVM.Day;
                     signOuts.TimeOut = createSignOutVM.TimeOut;
-                    signOuts.HoursIn = 8;
+                    signOuts.HoursIn = 7;
                     signOuts.Reason = createSignOutVM.Reason;
-                    signOuts.Staff = createSignOutVM.Staff;
+                    //signOuts.Staff.Id = createSignOutVM.Staff.Id;
+
+                    //signOuts.Staff = _context.Staff.Where(s => s.Id == StaffId).SingleOrDefault();
+                    signOuts.Staff = staff;
 
                     // update sign outs table
                     _context.Add(signOuts);

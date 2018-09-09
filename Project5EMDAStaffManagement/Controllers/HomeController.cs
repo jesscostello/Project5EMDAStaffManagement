@@ -55,7 +55,7 @@ namespace Project5EMDAStaffManagement.Controllers
             StaffOut.AddRange(_context.SignOuts
                 .Include(s => s.Staff)
                 .Include(r => r.Reason)
-                .OrderBy(s => s.Staff)
+                .OrderByDescending(s => s.TimeOut.TimeOfDay)
                 .Where(s => s.Day.Date == today)
                 .ToList());
 
