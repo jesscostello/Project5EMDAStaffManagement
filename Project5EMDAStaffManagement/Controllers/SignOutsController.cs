@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project5EMDAStaffManagement.Data;
 using Project5EMDAStaffManagement.Models;
+using Project5EMDAStaffManagement.ViewModels;
 
 namespace Project5EMDAStaffManagement.Controllers
 {
@@ -88,19 +89,47 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Day,TimeOut,HoursIn,In,Reason,Staff")] SignOuts signOuts)
+        public async Task<IActionResult> Create([Bind("Id,Day,TimeOut,HoursIn,Reason,Staff,StaffIn")] CreateSignOutVM createSignOutVM)
         {
             if (ModelState.IsValid)
             {
-                //_context.Add(signOuts);
-
                 
+                // staff is signing in
+                if (createSignOutVM.StaffIn == true)
+                {
+                    // update sign outs table
+                    SignOuts signOuts = new SignOuts();
+                    signOuts.Day = createSignOutVM.Day;
+                    signOuts.TimeOut = createSignOutVM.TimeOut;
+                    signOuts.HoursIn = 8;
+                    signOuts.Reason = createSignOutVM.Reason;
+                    signOuts.Staff = createSignOutVM.Staff;
+                    _context.Add(signOuts);
 
+                    await _context.SaveChangesAsync();
+                    return Redirect("~/Home/Index");
+                }
+                // staff is signing out
+                else
+                {
+                    createSignOutVM.TimeOut = DateTime.Now;
+                    createSignOutVM.Day = DateTime.Now;
 
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    SignOuts signOuts = new SignOuts();
+                    signOuts.Day = createSignOutVM.Day;
+                    signOuts.TimeOut = createSignOutVM.TimeOut;
+                    signOuts.HoursIn = 8;
+                    signOuts.Reason = createSignOutVM.Reason;
+                    signOuts.Staff = createSignOutVM.Staff;
+
+                    // update sign outs table
+                    _context.Add(signOuts);
+
+                    await _context.SaveChangesAsync();
+                    return Redirect("~/Home/Index");
+                }
             }
-            return View(signOuts);
+            return NotFound();
         }
 
         // GET: SignOuts/Edit/5
