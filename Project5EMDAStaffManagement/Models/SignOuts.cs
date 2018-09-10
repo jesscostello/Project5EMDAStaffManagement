@@ -14,6 +14,6 @@ namespace Project5EMDAStaffManagement.Models
         public DateTime Day { get; set; }
         public DateTime TimeOut { get; set; }
         public Reasons Reason { get; set; }
-        public int HoursIn { get; set; }
+        public string HoursIn { get; set; }
     }
 }

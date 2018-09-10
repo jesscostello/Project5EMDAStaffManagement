@@ -10,14 +10,14 @@
 
     @foreach (var item in ViewData["StaffOut"] as List<SignOuts>)
     {
-        <p>
+        <p class="col-md-4">
             <b>@Html.DisplayFor(modelItem => item.Staff.FirstName) @Html.DisplayFor(modelItem => item.Staff.LastName) </b>
             signed out at
             @item.TimeOut.ToShortTimeString()
             <br />Reason:
             @Html.DisplayFor(modelItem => item.Reason.Reason)
             <br />Hours in office:
-            @Html.DisplayFor(modelItem => item.HoursIn)
+            @item.HoursIn.Substring(0, 5)
         </p>
     }
 </div>
