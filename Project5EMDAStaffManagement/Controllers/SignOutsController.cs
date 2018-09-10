@@ -81,45 +81,46 @@ namespace Project5EMDAStaffManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Day,TimeOut,HoursIn,Reason,Staff,StaffIn")] CreateSignOutVM createSignOutVM)
         {
+            // staff is signing in
+            if (createSignOutVM.StaffIn == true)
+            {
+                int staffid = createSignOutVM.Staff.Id;
+                Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
+
+                staff.In = true;
+                staff.TimeIn = DateTime.Now;
+
+                _context.Update(staff);
+                await _context.SaveChangesAsync();
+                return Redirect("~/Home/Index");
+            }
+            // staff is signing out
             if (ModelState.IsValid)
             {
-                
-                // staff is signing in
-                if (createSignOutVM.StaffIn == true)
-                {
+                int reasonid = createSignOutVM.Reason.Id;
+                Reasons reason = (Reasons)_context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
+                int staffid = createSignOutVM.Staff.Id;
+                Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
+
+                SignOuts signOuts = new SignOuts();
+                signOuts.Day = DateTime.Now;
+                signOuts.TimeOut = DateTime.Now;
+                // do a calculation
+                signOuts.HoursIn = 7;
+                signOuts.Staff = staff;
+                signOuts.Reason = reason;
                     
-
-                    await _context.SaveChangesAsync();
-                    return Redirect("~/Home/Index");
-                }
-                // staff is signing out
-                else
-                {
-                    createSignOutVM.TimeOut = DateTime.Now;
-                    createSignOutVM.Day = DateTime.Now;
-
-                    int reasonid = createSignOutVM.Reason.Id;
-                    Reasons reason = (Reasons)_context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
-                    int staffid = createSignOutVM.Staff.Id;
-                    Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
-
-                    SignOuts signOuts = new SignOuts();
-                    signOuts.Day = createSignOutVM.Day;
-                    signOuts.TimeOut = createSignOutVM.TimeOut;
-                    // do a calculation
-                    signOuts.HoursIn = 7;
-                    signOuts.Staff = staff;
-                    //signOuts.Staff = createSignOutVM.Staff;
-                    signOuts.Reason = reason;
+                // update sign outs table
+                _context.Add(signOuts);
+                await _context.SaveChangesAsync();
                     
-                    // update sign outs table
-                    _context.Add(signOuts);
-
-                    // update the staff table 'In' field and time field
-
-                    await _context.SaveChangesAsync();
-                    return Redirect("~/Home/Index");
-                }
+                // update the staff table 'In' field and time field
+                staff.In = false;
+                staff.TimeOut = DateTime.Now;
+                    
+                _context.Update(staff);
+                await _context.SaveChangesAsync();
+                return Redirect("~/Home/Index");
             }
             return NotFound();
         }
