@@ -87,14 +87,7 @@ namespace Project5EMDAStaffManagement.Controllers
                 // staff is signing in
                 if (createSignOutVM.StaffIn == true)
                 {
-                    // update sign outs table
-                    SignOuts signOuts = new SignOuts();
-                    signOuts.Day = createSignOutVM.Day;
-                    signOuts.TimeOut = createSignOutVM.TimeOut;
-                    signOuts.HoursIn = 8;
-                    signOuts.Reason = createSignOutVM.Reason;
-                    signOuts.Staff = createSignOutVM.Staff;
-                    _context.Add(signOuts);
+                    
 
                     await _context.SaveChangesAsync();
                     return Redirect("~/Home/Index");
@@ -104,25 +97,25 @@ namespace Project5EMDAStaffManagement.Controllers
                 {
                     createSignOutVM.TimeOut = DateTime.Now;
                     createSignOutVM.Day = DateTime.Now;
-                    // get the staff and reason IDs
-                    int StaffId = Convert.ToInt32(createSignOutVM.Staff);
-                    int ReasonId = Convert.ToInt32(createSignOutVM.Reason);
-                    Staff staff = (Staff)_context.Staff
-                        .Where(s => s.Id == StaffId).SingleOrDefault();
-                        
+
+                    int reasonid = createSignOutVM.Reason.Id;
+                    Reasons reason = (Reasons)_context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
+                    int staffid = createSignOutVM.Staff.Id;
+                    Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
 
                     SignOuts signOuts = new SignOuts();
                     signOuts.Day = createSignOutVM.Day;
                     signOuts.TimeOut = createSignOutVM.TimeOut;
+                    // do a calculation
                     signOuts.HoursIn = 7;
-                    signOuts.Reason = createSignOutVM.Reason;
-                    //signOuts.Staff.Id = createSignOutVM.Staff.Id;
-
-                    //signOuts.Staff = _context.Staff.Where(s => s.Id == StaffId).SingleOrDefault();
                     signOuts.Staff = staff;
-
+                    //signOuts.Staff = createSignOutVM.Staff;
+                    signOuts.Reason = reason;
+                    
                     // update sign outs table
                     _context.Add(signOuts);
+
+                    // update the staff table 'In' field and time field
 
                     await _context.SaveChangesAsync();
                     return Redirect("~/Home/Index");

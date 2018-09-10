@@ -8,7 +8,7 @@
     <div class="row">
         <form name="staffform" asp-controller="SignOuts" asp-action="Create">
             <div class="col-md-4 col-xs-6">
-                <select id="StaffSelect" asp-for="Staff" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
+                <select id="StaffSelect" asp-for="Staff.Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
                     <option value="">Select Staff</option>
                 </select>
             </div>
@@ -16,7 +16,7 @@
                 <input asp-for="StaffIn" id="InToggle" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" data-style="ios" />
             </div>
             <div class="col-md-4 col-xs-4">
-                <select asp-for="Reason" id="ReasonSelect" asp-items="@((List<SelectListItem>) ViewData["Reasons"])" class="form-control" style="width: 100%; display:none">
+                <select asp-for="Reason.Id" id="ReasonSelect" asp-items="@((List<SelectListItem>) ViewData["Reasons"])" class="form-control" style="width: 100%; display:none">
                     <option value="">Select Reason</option>
                 </select>
             </div>
