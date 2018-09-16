@@ -102,13 +102,22 @@ namespace Project5EMDAStaffManagement.Controllers
                 int staffid = createSignOutVM.Staff.Id;
                 Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
 
-                string hours = (DateTime.Now.TimeOfDay - staff.TimeIn.TimeOfDay).ToString();
+                
 
                 SignOuts signOuts = new SignOuts();
                 signOuts.Day = DateTime.Now;
                 signOuts.TimeOut = DateTime.Now;
                 // do a calculation
-                signOuts.HoursIn = hours;
+                if (staff.TimeIn.Date == DateTime.Today.Date)
+                {
+                    string hours = (DateTime.Now.TimeOfDay - staff.TimeIn.TimeOfDay).ToString();
+                    signOuts.HoursIn = hours;
+                }
+                else
+                {
+                    string hours = "n/a";
+                    signOuts.HoursIn = hours;
+                }
                 signOuts.Staff = staff;
                 signOuts.Reason = reason;
                     

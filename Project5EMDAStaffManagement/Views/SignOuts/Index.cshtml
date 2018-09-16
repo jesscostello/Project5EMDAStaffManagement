@@ -6,18 +6,55 @@
     ViewData["Title"] = "Index";
 }
 <div class="container">
-    <h2>Staff Currently Out</h2><br /><br />
+    <h2>Staff Currently Out</h2><br />
+    <h3 class="col-xs-12">Today: </h3>
 
     @foreach (var item in ViewData["StaffOut"] as List<SignOuts>)
     {
-        <p class="col-md-4">
-            <b>@Html.DisplayFor(modelItem => item.Staff.FirstName) @Html.DisplayFor(modelItem => item.Staff.LastName) </b>
-            signed out at
-            @item.TimeOut.ToShortTimeString()
-            <br />Reason:
-            @Html.DisplayFor(modelItem => item.Reason.Reason)
-            <br />Hours in office:
-            @item.HoursIn.Substring(0, 5)
-        </p>
+        @if (item.Day.Date == DateTime.Today.Date)
+        {
+            <p class="col-md-4">
+                <b>@item.Staff.FirstName @item.Staff.LastName </b>
+                signed out at
+                @item.TimeOut.ToShortTimeString()
+                <br />Reason:
+                @item.Reason.Reason
+                <br />Hours in office:
+                @if (item.HoursIn.Length > 3)
+                {
+                    @item.HoursIn.Substring(0, 5)
+                }
+                else
+                {
+                    @item.HoursIn.Substring(0, 3)
+                }
+            </p>
+        }
     }
+
+    <h3 class="col-xs-12">Past: </h3>
+
+    @foreach (var item in ViewData["StaffOut"] as List<SignOuts>)
+    {
+        @if (item.Day.Date != DateTime.Today.Date)
+        {
+            <p class="col-md-4">
+                <b>@item.Staff.FirstName @item.Staff.LastName </b>
+                signed out at
+                @item.TimeOut.ToShortTimeString()
+                <br />Reason:
+                @item.Reason.Reason
+                <br />Hours in office:
+                @if (item.HoursIn.Length > 3)
+                {
+                    @item.HoursIn.Substring(0, 5)
+                }
+                else
+                {
+                    @item.HoursIn.Substring(0, 3)
+                }
+            </p>
+        }
+    }
+
 </div>

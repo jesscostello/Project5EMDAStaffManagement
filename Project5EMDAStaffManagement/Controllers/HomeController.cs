@@ -50,16 +50,20 @@ namespace Project5EMDAStaffManagement.Controllers
                     Text = n.Reason
                 }).ToList();
 
-            var today = DateTime.Today;
             List<SignOuts> StaffOut = new List<SignOuts>();
             StaffOut.AddRange(_context.SignOuts
                 .Include(s => s.Staff)
                 .Include(r => r.Reason)
-                .OrderByDescending(s => s.TimeOut.TimeOfDay)
-                .Where(s => s.Day.Date == today)
+                .GroupBy(g => g.Staff.Id)
+                .Select(e => e.LastOrDefault())
                 .ToList());
 
-            ViewData["StaffOut"] = StaffOut;
+            List<SignOuts> StaffOutOrder = new List<SignOuts>();
+            StaffOutOrder.AddRange(StaffOut
+                .OrderByDescending(s => s.TimeOut.TimeOfDay)
+                .ToList());
+            
+            ViewData["StaffOut"] = StaffOutOrder;
 
             return View();
         }
