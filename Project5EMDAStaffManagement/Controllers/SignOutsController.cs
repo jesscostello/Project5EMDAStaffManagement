@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Project5EMDAStaffManagement.Business;
 using Project5EMDAStaffManagement.Data;
 using Project5EMDAStaffManagement.Models;
 using Project5EMDAStaffManagement.ViewModels;
@@ -14,10 +15,12 @@ namespace Project5EMDAStaffManagement.Controllers
     public class SignOutsController : Controller
     {
         private readonly StaffDbContext _context;
+        private readonly IDbCalls _dbcalls;
 
-        public SignOutsController(StaffDbContext context)
+        public SignOutsController(StaffDbContext context, IDbCalls dbCalls)
         {
             _context = context;
+            _dbcalls = dbCalls;
         }
 
         // GET: SignOuts
@@ -102,7 +105,8 @@ namespace Project5EMDAStaffManagement.Controllers
                 int staffid = createSignOutVM.Staff.Id;
                 Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
 
-                
+                // increment reason count
+                _dbcalls.IncrementReasonCount(reasonid);
 
                 SignOuts signOuts = new SignOuts();
                 signOuts.Day = DateTime.Now;

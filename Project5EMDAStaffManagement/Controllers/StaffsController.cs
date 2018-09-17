@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project5EMDAStaffManagement.Data;
 using Project5EMDAStaffManagement.Models;
+using Project5EMDAStaffManagement.ViewModels;
 
 namespace Project5EMDAStaffManagement.Controllers
 {
@@ -72,6 +73,14 @@ namespace Project5EMDAStaffManagement.Controllers
         // GET: Staffs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Reasons"] = _context.Reasons.Distinct()
+                .OrderByDescending(n => n.ReasonCount)
+                .Select(n => new SelectListItem()
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Reason
+                }).ToList();
+
             if (id == null)
             {
                 return NotFound();
@@ -90,8 +99,19 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In,TimeIn,TimeOut")] Staff staff)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In,TimeIn,TimeOut")] CreateSignOutVM createSignOutVM)
         {
+            ViewData["Reasons"] = _context.Reasons.Distinct()
+                .OrderByDescending(n => n.ReasonCount)
+                .Select(n => new SelectListItem()
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Reason
+                }).ToList();
+
+            int staffid = createSignOutVM.Id;
+            Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
+
             if (id != staff.Id)
             {
                 return NotFound();
@@ -104,12 +124,39 @@ namespace Project5EMDAStaffManagement.Controllers
                     if (staff.In == true)
                     {
                         staff.TimeIn = DateTime.Now;
+                        _context.Update(staff);
                     }
                     else if (staff.In == false)
                     {
                         staff.TimeOut = DateTime.Now;
+                        _context.Update(staff);
+
+                        //update sign outs table
+                        int reasonid = createSignOutVM.Reason.Id;
+                        Reasons reason = (Reasons)_context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
+                        
+                        SignOuts signOuts = new SignOuts();
+                        signOuts.Day = DateTime.Now;
+                        signOuts.TimeOut = DateTime.Now;
+                        // do a calculation
+                        if (staff.TimeIn.Date == DateTime.Today.Date)
+                        {
+                            string hours = (DateTime.Now.TimeOfDay - staff.TimeIn.TimeOfDay).ToString();
+                            signOuts.HoursIn = hours;
+                        }
+                        else
+                        {
+                            string hours = "n/a";
+                            signOuts.HoursIn = hours;
+                        }
+                        signOuts.Staff = staff;
+                        signOuts.Reason = reason;
+
+                        // update sign outs table
+                        _context.Add(signOuts);
+                        await _context.SaveChangesAsync();
                     }
-                    _context.Update(staff);
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Project5EMDAStaffManagement.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Project5EMDAStaffManagement.Business;
 
 namespace Project5EMDAStaffManagement
 {
@@ -39,6 +40,8 @@ namespace Project5EMDAStaffManagement
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<IDbCalls, DbCalls>();
 
             services.AddDbContext<StaffDbContext>(options => options.UseSqlite("Data Source = Staff.db"));
 

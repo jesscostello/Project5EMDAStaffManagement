@@ -1,4 +1,5 @@
-﻿@model Project5EMDAStaffManagement.Models.Staff
+﻿@model Project5EMDAStaffManagement.ViewModels.CreateSignOutVM
+
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,7 +8,7 @@
 <div class="container">
     <div class="jumbotron">
         <h2>Edit Staff Member</h2>
-        <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h4><br />
+        @*<h4>@Html.DisplayFor(model => model.Staff.FirstName) @Html.DisplayFor(model => model.Staff.LastName)</h4><br />*@
         <div>
             ( <a asp-action="Index"><span class="glyphicon glyphicon-hand-left"></span> Back to List</a> )
         </div>
@@ -18,35 +19,40 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group col-sm-6">
-                <label asp-for="FirstName" class="control-label">First Name</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label class="control-label">First Name</label>
+                <input asp-for="Staff.FirstName" class="form-control" />
+                <span asp-validation-for="Staff.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group col-sm-6">
-                <label asp-for="LastName" class="control-label">Last Name</label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label class="control-label">Last Name</label>
+                <input asp-for="Staff.LastName" class="form-control" />
+                <span asp-validation-for="Staff.LastName" class="text-danger"></span>
             </div>
             <div class="form-group col-sm-6">
-                <label asp-for="TimeIn" class="control-label">Time In</label>
-                <input asp-for="TimeIn" class="form-control" />
-                <span asp-validation-for="TimeIn" class="text-danger"></span>
+                <label class="control-label">Time In</label>
+                <input asp-for="Staff.TimeIn" class="form-control" />
+                <span asp-validation-for="Staff.TimeIn" class="text-danger"></span>
             </div>
             <div class="form-group col-sm-6">
-                <label asp-for="TimeOut" class="control-label"> Time Out</label>
+                <label class="control-label"> Time Out</label>
                 <input asp-for="TimeOut" class="form-control" />
                 <span asp-validation-for="TimeOut" class="text-danger"></span>
             </div>
             <div class="form-group col-sm-6 text-center">
-                @if (Model.In == true)
+                @if (Model.StaffIn == true)
                 {
-                    <input asp-for="In" class="form-control" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" data-style="ios" checked="checked" />
+                    <input id="InToggle" asp-for="StaffIn" class="form-control" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" data-style="ios" checked="checked" />
                 }
                 else
                 {
-                    <input asp-for="In" class="form-control" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" data-style="ios" />
+                    <input id="InToggle" asp-for="StaffIn" class="form-control" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" data-style="ios" />
                 }
 
+            </div>
+            <div class="form-group col-sm-6">
+                <select asp-for="Reason.Id" id="ReasonSelect" asp-items="@((List<SelectListItem>) ViewData["Reasons"])" class="form-control" style="width: 100%; display:none">
+                    <option value="">Select Reason</option>
+                </select>
             </div>
             <div class="form-group col-sm-6 text-center">
                 <input type="submit" value="Save" class="btn btn-success" style="width: 50%;" />
@@ -56,5 +62,15 @@
 </div>
 
 @section Scripts {
+    <script type="text/javascript">
+        $("#InToggle").change(function () {
+            if ($("#InToggle").val == true) {
+                $("#ReasonSelect").show();
+            }
+            else {
+                $("#ReasonSelect").hide();
+            }
+        });
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
