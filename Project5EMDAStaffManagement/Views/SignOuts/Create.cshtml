@@ -7,21 +7,21 @@
     <br />
     <div class="row">
         <form name="staffform" asp-controller="SignOuts" asp-action="Create">
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-4 col-xs-12 margin-bottom-20">
                 <select id="StaffSelect" asp-for="Staff.Id" asp-items="@((List<SelectListItem>) ViewData["Staff"])" class="form-control" style="width: 100%">
                     <option value="">Select Staff</option>
                 </select>
             </div>
-            <div class="col-md-2 col-xs-2 text-center">
+            <div class="col-md-2 col-xs-12 text-center margin-bottom-20">
                 <input asp-for="StaffIn" id="InToggle" type="checkbox" data-toggle="toggle" data-on="In" data-off="Out" data-style="ios" />
             </div>
-            <div class="col-md-4 col-xs-4">
+            <div class="col-md-4 col-xs-12 margin-bottom-20">
                 <select asp-for="Reason.Id" id="ReasonSelect" asp-items="@((List<SelectListItem>) ViewData["Reasons"])" class="form-control" style="width: 100%; display:none">
                     <option value="">Select Reason</option>
                 </select>
             </div>
-            <div class="col-md-2 col-xs-4">
-                <input type="submit" class="btn btn-success" style="width: 95%; margin: auto;" />
+            <div class="col-md-2 col-xs-12">
+                <input type="submit" class="btn btn-primary" style="width: 95%; margin: auto;" />
             </div>
         </form>
     </div>

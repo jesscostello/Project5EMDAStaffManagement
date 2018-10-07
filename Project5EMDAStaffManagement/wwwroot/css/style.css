@@ -5,18 +5,6 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-html,
-body {
-    background-color: #ffffff;
-    font-size: 14px;
-    color: #999999;
-    width: 100%;
-    padding: 0;
-    margin-left: 0;
-    margin-right: 0;
-    font-family: 'open_sanslight';
-    font-weight: 300;
-}
 .preloader {
     position: fixed;
     top: 0;
@@ -125,56 +113,6 @@ input[type="color"],
     box-shadow:none; 
 }
 
-h1,
-h2,
-h3 {
-    /*font-family: 'Lane', sans-serif;*/
-    font-weight: 300;
-    margin: 0;
-}
-h4,
-h5 {
-    /*font-family: 'roboto', sans-serif;*/
-    font-weight: 300;
-    margin: 0;
-    line-height: 2rem;
-}
-h1 {
-    font-size: 3rem;
-    line-height: 4rem;
-    font-weight: 300;
-}
-h2 {
-    font-size: 2.5rem;
-    line-height: 3rem;
-    margin-bottom: .9rem;
-}
-h3 {
-    font-weight: 300;
-    margin-bottom: .9rem;
-    font-size: 2.1rem;
-    line-height: 2.5rem;
-}
-h4 {
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    margin-bottom: 1.1rem;
-}
-h5 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-h6 {
-    font-size: 1rem;
-    margin-bottom: .9rem;
-}
-p {
-    line-height: 1.5rem;
-    font-size: 1.1rem;
-}
-p:last-child {
-    margin-bottom: 0px;
-}
 /*.home-wrap h1,*/
 .home-wrap h2,
 .home-wrap h3,
@@ -311,7 +249,7 @@ Button
     padding: 16px 16px;
     font-family: 'open_sanssemibold';
     border-radius: 50px;
-    font-size: 22px;
+    font-size: 18px;
     box-shadow:2px 2px 5px 0 rgba(55,50,40, .20);
     -webkit-box-shadow:2px 2px 5px 0 rgba(55,50,40, .20);
     -moz-box-shadow:2px 2px 5px 0 rgba(55,50,40, .20);
@@ -837,13 +775,3 @@ textarea::-ms-input-placeholder
     font-family: 'open_sansregular';
     font-size: 15px;
 }
-
-
-.toggle.ios, .toggle-on.ios, .toggle-off.ios {
-    border-radius: 20px !important;
-}
-
-.toggle.ios .toggle-handle {
-    border-radius: 20px !important;
-}
-

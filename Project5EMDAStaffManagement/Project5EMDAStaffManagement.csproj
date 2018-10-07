@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="wwwroot\favicon.ico.png" />
   </ItemGroup>
 
   <ItemGroup>
