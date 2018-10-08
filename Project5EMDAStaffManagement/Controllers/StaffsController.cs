@@ -74,12 +74,12 @@ namespace Project5EMDAStaffManagement.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             ViewData["Reasons"] = _context.Reasons.Distinct()
-                .OrderByDescending(n => n.ReasonCount)
-                .Select(n => new SelectListItem()
-                {
-                    Value = n.Id.ToString(),
-                    Text = n.Reason
-                }).ToList();
+               .OrderByDescending(n => n.ReasonCount)
+               .Select(n => new SelectListItem()
+               {
+                   Value = n.Id.ToString(),
+                   Text = n.Reason
+               }).ToList();
 
             if (id == null)
             {
@@ -99,18 +99,10 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In,TimeIn,TimeOut")] CreateSignOutVM createSignOutVM)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In,TimeIn,TimeOut")] Staff staff)
         {
-            //ViewData["Reasons"] = _context.Reasons.Distinct()
-            //    .OrderByDescending(n => n.ReasonCount)
-            //    .Select(n => new SelectListItem()
-            //    {
-            //        Value = n.Id.ToString(),
-            //        Text = n.Reason
-            //    }).ToList();
-
-            int staffid = createSignOutVM.Id;
-            Staff staff = _context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
+            // int staffid = createSignOutVM.Id;
+            // Staff staff = _context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
 
             if (id != staff.Id)
             {
@@ -132,7 +124,7 @@ namespace Project5EMDAStaffManagement.Controllers
                         _context.Update(staff);
 
                         //update sign outs table
-                        int reasonid = createSignOutVM.Reason.Id;
+                        int reasonid = 644;
                         Reasons reason = (Reasons)_context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
                         
                         SignOuts signOuts = new SignOuts();
