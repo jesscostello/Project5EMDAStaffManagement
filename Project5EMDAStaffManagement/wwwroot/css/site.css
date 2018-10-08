@@ -21,14 +21,20 @@ h1, h2, h3, h4 {
 .intro {
     display: table;
     width: 100%;
-    height: auto;
+    margin-top: 30px;
     text-align: center;
     color: #fff;
-    background: url(../images/emda_logo.png) no-repeat center center;
+    background: url(../images/headerimg.jpg) no-repeat top center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+footer {
+    background-color: #b4cad6;
+    padding-top: 20px;
+    border-top: 1px solid;
 }
 
 .intro .overlay {
@@ -59,7 +65,7 @@ h1, h2, h3, h4 {
 }
 
 .intro-text {
-    padding: 200px 0px;
+    padding: 150px 0px;
 }
 
 select {

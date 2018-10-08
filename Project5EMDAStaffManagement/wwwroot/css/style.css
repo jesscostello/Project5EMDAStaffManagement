@@ -101,12 +101,10 @@ input[type="color"],
     outline: none;
 }
 .form-control {
-    border: 0;
     border-bottom: 2px solid #999999;
     font-size: 16px;
     height: 45px;
     background: transparent;
-
 }
 .form-control:focus {
     border-bottom: 2px solid #00a5ff;
