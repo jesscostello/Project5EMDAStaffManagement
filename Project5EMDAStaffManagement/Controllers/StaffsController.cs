@@ -99,11 +99,8 @@ namespace Project5EMDAStaffManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In,TimeIn,TimeOut")] Staff staff)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,In")] Staff staff)
         {
-            // int staffid = createSignOutVM.Id;
-            // Staff staff = _context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
-
             if (id != staff.Id)
             {
                 return NotFound();
@@ -124,8 +121,6 @@ namespace Project5EMDAStaffManagement.Controllers
                         _context.Update(staff);
 
                         //update sign outs table
-                        int reasonid = 644;
-                        Reasons reason = (Reasons)_context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
                         
                         SignOuts signOuts = new SignOuts();
                         signOuts.Day = DateTime.Now;
@@ -141,8 +136,12 @@ namespace Project5EMDAStaffManagement.Controllers
                             string hours = "n/a";
                             signOuts.HoursIn = hours;
                         }
-                        signOuts.Staff = staff;
-                        signOuts.Reason = reason;
+                        int staffid = id;
+                        Staff staffSelected = _context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
+                        signOuts.Staff = staffSelected;
+                        int reasonid = 999;
+                        Reasons reasonSelected = _context.Reasons.Where(r => r.Id == reasonid).SingleOrDefault();
+                        signOuts.Reason = reasonSelected;
 
                         // update sign outs table
                         _context.Add(signOuts);

@@ -44,6 +44,7 @@ namespace Project5EMDAStaffManagement.Controllers
 
             ViewData["Reasons"] = _context.Reasons.Distinct()
                 .OrderByDescending(n => n.ReasonCount)
+                .Where(i => i.Id != 999)
                 .Select(n => new SelectListItem()
                 {
                     Value = n.Id.ToString(),
@@ -66,7 +67,7 @@ namespace Project5EMDAStaffManagement.Controllers
             ViewData["StaffOut"] = StaffOutOrder;
 
             List<Staff> StaffStatus = new List<Staff>();
-            StaffStatus.AddRange(_context.Staff.Distinct().OrderBy(s => s.Id).ToList());
+            StaffStatus.AddRange(_context.Staff.Distinct().OrderBy(s => s.FirstName).ToList());
 
             ViewData["StaffStatus"] = StaffStatus;
 

@@ -30,19 +30,22 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Reason)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ReasonCount)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                            <a asp-action="Delete" asp-route-id="@item.Id" style="color: red">Delete <span class="glyphicon glyphicon-trash"></span></a>
-                        </td>
-                    </tr>
+                    if (item.Id != 999)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Reason)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReasonCount)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                <a asp-action="Delete" asp-route-id="@item.Id" style="color: red">Delete <span class="glyphicon glyphicon-trash"></span></a>
+                            </td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>

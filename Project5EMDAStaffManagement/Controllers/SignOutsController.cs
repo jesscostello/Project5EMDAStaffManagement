@@ -95,7 +95,7 @@ namespace Project5EMDAStaffManagement.Controllers
 
                 _context.Update(staff);
                 await _context.SaveChangesAsync();
-                return Redirect("~/Home/Index");
+                return Redirect("~/Home/Index#UpdateStatus");
             }
             // staff is signing out
             if (ModelState.IsValid)
@@ -106,8 +106,11 @@ namespace Project5EMDAStaffManagement.Controllers
                 Staff staff = (Staff)_context.Staff.Where(s => s.Id == staffid).SingleOrDefault();
 
                 // increment reason count
-                _dbcalls.IncrementReasonCount(reasonid);
-
+                if (reasonid != 999)
+                {
+                    _dbcalls.IncrementReasonCount(reasonid);
+                }
+                
                 SignOuts signOuts = new SignOuts();
                 signOuts.Day = DateTime.Now;
                 signOuts.TimeOut = DateTime.Now;
@@ -135,7 +138,7 @@ namespace Project5EMDAStaffManagement.Controllers
                     
                 _context.Update(staff);
                 await _context.SaveChangesAsync();
-                return Redirect("~/Home/Index");
+                return Redirect("~/Home/Index#UpdateStatus");
             }
             return NotFound();
         }
